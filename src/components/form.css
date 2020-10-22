@@ -1,0 +1,16 @@
+.searchButton {
+  font-size: 1.5rem;
+  margin: 0.4rem;
+  background-color: transparent;
+  /* border: 1px solid black; */
+  cursor: pointer;
+}
+
+.input {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.input::placeholder {
+  font-size: 1rem;
+}

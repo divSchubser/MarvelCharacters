@@ -10,5 +10,17 @@ html {
 
 body {
   margin: 0;
-  background: darkslategray;
+  background: rgb(75, 74, 74);
+}
+
+.header__title {
+  color: white;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  text-align: center;
 }
