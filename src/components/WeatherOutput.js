@@ -1,21 +1,25 @@
 import { createElement } from "../utils/elements";
 
-export default function createWeatherOutput() {
+export default function createWeatherOutput(weatherObj, outputContainer) {
+  // weatherObj || console.log(weatherObj.title);
+
+  const weather = weatherObj.consolidated_weather[0];
   const location = createElement("h2", {
     className: "locationName",
-    innerText: "Köln",
+    innerText: weatherObj.title,
   });
 
   const cardBody = createElement("div", {
     className: "card-body",
     children: [
+      location,
       createElement("h5", {
         className: "card-title",
         innerText: "Temperatur",
       }),
       createElement("p", {
         className: "card-text",
-        innerText: "20°C",
+        innerText: `${Math.round(weather.the_temp)} °C`,
       }),
     ],
   });
@@ -24,11 +28,11 @@ export default function createWeatherOutput() {
     className: "card",
     children: [cardBody],
   });
-
-  const outputContainer = createElement("div", {
-    className: "outputContainer",
-    children: [location, card],
-  });
+  outputContainer.append(card);
+  // const outputContainer = createElement("div", {
+  //   className: "outputContainer",
+  //   children: [location, card],
+  // });
 
   return outputContainer;
 }

@@ -1,7 +1,8 @@
 import "./app.css";
 import { createForm } from "./components/Form";
-import createWeatherOutput from "./components/WeatherOutput";
 import { createElement } from "./utils/elements";
+import { getWeather } from "./utils/api";
+import createWeather from "./components/WeatherOutput";
 
 function App() {
   const headerTitle = createElement("h1", {
@@ -9,9 +10,16 @@ function App() {
     className: "header__title  ",
   });
 
-  const form = createForm();
+  const form = createForm({
+    onclick: async (event) => {
+      event.preventDefault();
+      const input = document.querySelector(".input");
+      const weatherObj = await getWeather(input.value);
+      await createWeather(weatherObj, output);
+    },
+  });
 
-  const output = createWeatherOutput();
+  const output = createElement("div");
 
   const container = createElement("div", {
     className: "container",

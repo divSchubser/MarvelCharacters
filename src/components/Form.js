@@ -1,18 +1,11 @@
-import { createElement } from "../utils/elements";
 import "./form.css";
+import { createElement } from "../utils/elements";
 
-import { getWeather, createWeatherElements } from "../utils/api";
-
-export const createForm = () => {
+export const createForm = (props) => {
   const searchButton = createElement("button", {
     className: "searchButton",
     innerText: "☀️",
-
-    onclick: async (event) => {
-      event.preventDefault();
-      let weatherObj = getWeather(input.value);
-      createWeatherElements(weatherObj);
-    },
+    ...props,
   });
 
   const input = createElement("input", {

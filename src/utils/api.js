@@ -16,6 +16,3 @@ export async function getWeather(input) {
   const weatherObj = await SearchWeather(woeid);
   return weatherObj;
 }
-export async function createWeatherElements(weatherData) {
-  console.log(await weatherData);
-}
