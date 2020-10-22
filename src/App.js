@@ -1,15 +1,22 @@
 import "./app.css";
-import Header from "./components/Header";
+import { createForm } from "./components/Form";
+import createWeatherOutput from "./components/WeatherOutput";
 import { createElement } from "./utils/elements";
 
 function App() {
-  const header = Header();
-
-  const main = createElement("main", {
-    innerText: "👋",
+  const headerTitle = createElement("h1", {
+    innerText: "The Weather Company",
+    className: "header__title  ",
   });
 
-  const container = createElement("div", { children: [header, main] });
+  const form = createForm();
+
+  const output = createWeatherOutput();
+
+  const container = createElement("div", {
+    className: "container",
+    children: [headerTitle, form, output],
+  });
   return container;
 }
 
