@@ -8,7 +8,8 @@ export default function createWeatherOutput(weatherObj, outputContainer) {
 
   const roboFace = createElement("img", {
     className: "roboFace",
-    src: "https://robohash.org/WasfuereinRobo.png?set=set1",
+    src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=set1`,
+
     alt: "Robo-Face",
   });
 
