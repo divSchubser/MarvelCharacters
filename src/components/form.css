@@ -14,3 +14,7 @@
 .input::placeholder {
   font-size: 1rem;
 }
+
+.form {
+  margin-top: 1rem;
+}

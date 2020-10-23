@@ -6,7 +6,7 @@ import createWeather from "./components/WeatherOutput";
 
 function App() {
   const headerTitle = createElement("h1", {
-    innerText: "The Weather Company",
+    innerText: "Robo Weather",
     className: "header__title  ",
   });
 
@@ -20,7 +20,9 @@ function App() {
     },
   });
 
-  const output = createElement("div");
+  const output = createElement("div", {
+    className: "outputContainer",
+  });
 
   const container = createElement("div", {
     className: "container",
