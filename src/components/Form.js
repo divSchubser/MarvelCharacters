@@ -11,7 +11,6 @@ export const createForm = (props) => {
   const kittyCheckbox = createElement("input", {
     className: "kittyButton",
     type: "checkbox",
-    value: "kitty",
   });
   const kittyBox = createElement("button", {
     className: "kittyBox",
