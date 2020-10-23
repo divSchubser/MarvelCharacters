@@ -47,22 +47,27 @@ h6 {
 /* Robos Favourite Cities */
 .robosHeader {
   margin-top: 1rem;
+  margin-bottom: 0;
   color: white;
 }
 
 .favCities {
-  width: 60%;
-  margin: 1rem auto;
   display: flex;
   justify-content: space-evenly;
+  flex-flow: wrap;
+  width: 60%;
+  margin: 1rem auto;
 }
 
 .favCity {
+  width: 150px;
   background: black;
   color: limegreen;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem;
 }
-
+.favCities > :last-child {
+  margin-top: 0.5rem;
+}
 .favCity:hover {
   border: 2px solid limegreen;
   color: limegreen;
