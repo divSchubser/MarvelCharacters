@@ -24,13 +24,14 @@ h5,
 h6 {
   font-family: "Press Start 2P", cursive;
 }
-
+/* Main */
 .container {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: grid;
   align-content: center;
   text-align: center;
+  padding: 3rem 0;
 }
 /* Page Title & Subtext */
 .header__title {
@@ -86,4 +87,19 @@ h6 {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
+}
+
+.clock {
+  width: 150px;
+  margin: auto;
+  background-color: black;
+  color: limegreen;
+  border: 2px solid limegreen;
+}
+
+.loadingImg {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  transition: 1s ease-in-out;
 }

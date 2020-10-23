@@ -2,20 +2,39 @@ import "./form.css";
 import { createElement } from "../utils/elements";
 
 export const createForm = (props) => {
+  // const kittyLabel = createElement("label", {
+  //   className: "kittyLabel",
+  //   name: "kitty",
+  //   innertText: "Kitty",
+  // });
+
+  const kittyCheckbox = createElement("input", {
+    className: "kittyButton",
+    type: "checkbox",
+    value: "kitty",
+  });
+  const kittyBox = createElement("button", {
+    className: "kittyBox",
+    children: [kittyCheckbox],
+  });
   const searchButton = createElement("button", {
+    type: "submit",
     className: "searchButton",
     innerText: "🤖",
-    ...props,
+    required: "true",
   });
 
   const input = createElement("input", {
     className: "input",
     placeholder: "ENTER YOUR LOCATION",
+    type: "text",
+    required: "true",
   });
 
   const form = createElement("form", {
     className: "form",
-    children: [input, searchButton],
+    children: [kittyBox, input, searchButton],
+    ...props,
   });
   return form;
 };
