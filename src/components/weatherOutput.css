@@ -9,6 +9,8 @@
   border-radius: 15%;
   margin-left: -50px;
   height: 280px;
+  background: black;
+  color: limegreen;
 }
 
 .card::before {
@@ -29,7 +31,7 @@
   width: 0;
   height: 0;
   border: 3.125em solid transparent;
-  border-right-color: #ffffff;
+  border-right-color: black;
   border-left: 0;
   border-bottom: 0;
   margin-top: -1.562em;

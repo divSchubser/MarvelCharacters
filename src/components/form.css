@@ -1,18 +1,32 @@
 .searchButton {
   font-size: 1.5rem;
   margin: 0.4rem;
-  background-color: transparent;
+  background: url(https://media.giphy.com/media/1zhHiGwQiu2CaGj1uE/giphy.gif);
   /* border: 1px solid black; */
   cursor: pointer;
+}
+
+.searchButton:focus {
+  outline: none;
+  border: 2px solid limegreen;
 }
 
 .input {
   text-align: center;
   font-size: 1.5rem;
+  background: black;
+  color: limegreen;
 }
 
 .input::placeholder {
   font-size: 1rem;
+  color: limegreen;
+  opacity: 0.6;
+}
+
+.input:focus {
+  outline: none;
+  border: 2px solid limegreen;
 }
 
 .form {

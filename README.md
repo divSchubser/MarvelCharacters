@@ -7,4 +7,4 @@
 - [x] Add Random Quote
 - [ ] Favicon anpassen
 - [ ] Veränderliches Hintergrundbild.
-- [ ] Knöpfe für "Castrop-Rauxel" "Buxtehude" und "Pyongyang"
+- [ ] Knöpfe für "Abidjan" "Reykjavík" und "The Hague"
