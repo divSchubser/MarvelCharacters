@@ -7,8 +7,7 @@
   width: 300px;
   position: relative;
   border-radius: 15%;
-  margin-left: -50px;
-  /* height: 280px; */
+  margin-left: 20px;
   background: black;
   color: limegreen;
 }
@@ -58,4 +57,11 @@
   width: 100%;
   display: block;
   margin: 0.5rem;
+}
+
+.roboFace {
+  max-width: 230px;
+  max-height: 230px;
+  width: auto;
+  height: auto;
 }

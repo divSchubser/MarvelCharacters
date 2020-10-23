@@ -86,6 +86,7 @@ h6 {
 .outputContainer {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   margin-top: 3rem;
 }
 
