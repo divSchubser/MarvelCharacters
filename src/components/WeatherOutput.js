@@ -1,9 +1,10 @@
 import { createElement } from "../utils/elements";
+import "./weatherOutput.css";
 
 export default function createWeatherOutput(weatherObj, outputContainer) {
-  // weatherObj || console.log(weatherObj.title);
+  console.log(weatherObj);
 
-  const weather = weatherObj.consolidated_weather[0];
+  const weatherToday = weatherObj.consolidated_weather[0];
   const location = createElement("h2", {
     className: "locationName",
     innerText: weatherObj.title,
@@ -19,7 +20,11 @@ export default function createWeatherOutput(weatherObj, outputContainer) {
       }),
       createElement("p", {
         className: "card-text",
-        innerText: `${Math.round(weather.the_temp)} °C`,
+        innerText: `${Math.round(weatherToday.the_temp)} °C`,
+      }),
+      createElement("img", {
+        className: "card-image",
+        src: `https://www.metaweather.com/static/img/weather/${weatherToday.weather_state_abbr}.svg`,
       }),
     ],
   });
@@ -28,6 +33,7 @@ export default function createWeatherOutput(weatherObj, outputContainer) {
     className: "card",
     children: [cardBody],
   });
+  outputContainer.innerHTML = "";
   outputContainer.append(card);
   // const outputContainer = createElement("div", {
   //   className: "outputContainer",
