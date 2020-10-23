@@ -17,3 +17,10 @@ export async function SearchWeather(city) {
 //   const weatherObj = await SearchWeather(input);
 //   return weatherObj;
 // }
+
+export async function GetRandomQuote() {
+  const url = `https://api.adviceslip.com/advice`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.slip.advice;
+}

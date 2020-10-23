@@ -11,7 +11,6 @@ export const createForm = (props) => {
   const input = createElement("input", {
     className: "input",
     placeholder: "ENTER YOUR LOCATION",
-    value: "Cologne",
   });
 
   const form = createElement("form", {

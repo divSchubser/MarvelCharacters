@@ -1,7 +1,10 @@
 import { createElement } from "../utils/elements";
 import "./weatherOutput.css";
-
-export default function createWeatherOutput(weatherObj, outputContainer) {
+export default function createWeatherOutput(
+  weatherObj,
+  outputContainer,
+  randomQuote
+) {
   // console.log(weatherObj);
 
   const weatherToday = weatherObj.consolidated_weather[0];
@@ -33,6 +36,11 @@ export default function createWeatherOutput(weatherObj, outputContainer) {
       createElement("img", {
         className: "card-image",
         src: `https://www.metaweather.com/static/img/weather/${weatherToday.weather_state_abbr}.svg`,
+        alt: weatherToday.weather_state_name,
+      }),
+      createElement("marquee", {
+        className: "card-randomQuote",
+        innerText: randomQuote,
       }),
     ],
   });

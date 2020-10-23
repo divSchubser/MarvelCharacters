@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Turret+Road:wght@400;700&display=swap");
+
 *,
 *::before,
 *::after {
@@ -9,12 +11,18 @@ html {
 }
 
 body {
+  font-family: "Turret Road", cursive;
   margin: 0;
   background: rgb(75, 74, 74);
 }
 
-.header__title {
-  color: white;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Press Start 2P", cursive;
 }
 
 .container {
@@ -24,7 +32,56 @@ body {
   align-content: center;
   text-align: center;
 }
+/* Page Title & Subtext */
+.header__title {
+  color: white;
+}
+.header__sub {
+  font-size: 0.8rem;
+  color: limegreen;
+  width: 40%;
+  margin: 0.5em auto;
+  /* font-size: 1rem;s */
+}
 
+/* Robos Favourite Cities */
+.robosHeader {
+  margin-top: 1rem;
+  color: white;
+}
+
+.favCities {
+  width: 60%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.favCity {
+  background: black;
+  color: limegreen;
+  padding: 0.5rem 0.8rem;
+}
+
+.favCity:hover {
+  border: 2px solid limegreen;
+  color: limegreen;
+  transition: 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
+.favCity:active {
+  background: limegreen;
+  color: black;
+  border: 2px solid black;
+}
+
+.favCity:focus {
+  outline: none;
+  border: 2px solid limegreen;
+}
+
+/* Weather Output  */
 .outputContainer {
   display: flex;
   justify-content: center;

@@ -4,5 +4,7 @@
 - [x] Sprechblase als Wetteroutput
 - [ ] Wetter als Icon und Text
 - [ ] Fehler falls nichts gefunden
-- [ ] Add Random Quote
+- [x] Add Random Quote
 - [ ] Favicon anpassen
+- [ ] Veränderliches Hintergrundbild.
+- [ ] Knöpfe für "Abidjan" "Reykjavík" und "The Hague"
