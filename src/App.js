@@ -1,7 +1,7 @@
 import "./app.css";
 import { createForm } from "./components/Form";
 import { createElement } from "./utils/elements";
-import { getWeather } from "./utils/api";
+import { SearchWeather } from "./utils/api";
 import createWeather from "./components/WeatherOutput";
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
     onclick: async (event) => {
       event.preventDefault();
       const input = document.querySelector(".input");
-      const weatherObj = await getWeather(input.value);
+      const weatherObj = await SearchWeather(input.value);
+      input.value = "";
       await createWeather(weatherObj, output);
     },
   });

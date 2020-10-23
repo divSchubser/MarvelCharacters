@@ -4,7 +4,7 @@ import { createElement } from "../utils/elements";
 export const createForm = (props) => {
   const searchButton = createElement("button", {
     className: "searchButton",
-    innerText: "☀️",
+    innerText: "🤖",
     ...props,
   });
 
