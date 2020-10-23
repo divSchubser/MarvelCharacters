@@ -35,3 +35,10 @@
   margin-top: -1.562em;
   margin-left: -3.125em;
 }
+
+.card-randomQuote {
+  behavior: "scroll";
+  direction: "left";
+  width: 300px;
+  display: block;
+}
