@@ -8,7 +8,9 @@ export default function createWeatherOutput(
   // console.log(weatherObj);
 
   const weatherToday = weatherObj.consolidated_weather[0];
-
+  if (weatherToday === undefined) {
+    console.log(weatherObj);
+  }
   const roboFace = createElement("img", {
     className: "roboFace",
     src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=set1`,
