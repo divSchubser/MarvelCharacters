@@ -14,16 +14,6 @@
 }
 
 .card::before {
-  /* content: "";
-  position: absolute;
-  top: 145px;
-  left: -25px;
-  width: 60px;
-  height: 60px;
-  background: white;
-  transform: skew(47deg, 120deg) rotate(90deg);
-  border-radius: 0px;
-  border: 1px solid; */
   content: "";
   position: absolute;
   left: 0;
@@ -36,6 +26,24 @@
   border-bottom: 0;
   margin-top: -1.562em;
   margin-left: -3.125em;
+}
+@media only screen and (max-width: 400px) {
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 341px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 2.656em solid transparent;
+    border-top-color: black;
+    border-bottom: 0;
+    margin-left: -1.656em;
+    margin-bottom: -1.656em;
+  }
+  .card {
+    margin-left: 0;
+  }
 }
 
 .card-text {
