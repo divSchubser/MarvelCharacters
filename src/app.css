@@ -38,11 +38,10 @@ h6 {
   color: white;
 }
 .header__sub {
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   color: limegreen;
-  width: 40%;
-  margin: 0.5em auto;
-  /* font-size: 1rem;s */
+  width: 60%;
+  margin: 1.5rem auto 0 auto;
 }
 
 /* Robos Favourite Cities */
