@@ -2,3 +2,36 @@
   width: 100px;
   height: 100px;
 }
+
+.card {
+  min-width: 300px;
+  position: relative;
+  border-radius: 15%;
+  margin-left: -50px;
+  height: 280px;
+}
+
+.card::before {
+  /* content: "";
+  position: absolute;
+  top: 145px;
+  left: -25px;
+  width: 60px;
+  height: 60px;
+  background: white;
+  transform: skew(47deg, 120deg) rotate(90deg);
+  border-radius: 0px;
+  border: 1px solid; */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 57%;
+  width: 0;
+  height: 0;
+  border: 3.125em solid transparent;
+  border-right-color: #ffffff;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -1.562em;
+  margin-left: -3.125em;
+}
