@@ -1,19 +1,53 @@
 import { createElement } from "../utils/elements";
 import "./weatherOutput.css";
+
 export default function createWeatherOutput(
   weatherObj,
   outputContainer,
-  randomQuote
+  randomQuote,
+  favouriteCities
 ) {
-  // console.log(weatherObj);
+  function createFavCities(favouriteCities) {
+    const arrayContainer = document.querySelector(".favCitiesBox");
+    arrayContainer.innerText = favouriteCities;
+  }
+  createFavCities(favouriteCities);
 
   const weatherToday = weatherObj.consolidated_weather[0];
   if (weatherToday === undefined) {
     console.log(weatherObj);
   }
 
-  const checkboxvalue = document.querySelector(".kittyButton").checked;
-  let roboKitten = checkboxvalue ? "set4" : "set1";
+  let cityName = weatherObj.title;
+  const checkboxValue = document.querySelector(".kittyButton").checked;
+  let roboKitten = checkboxValue ? "set4" : "set1";
+
+  // Fav Cities
+  let favOrNot = favouriteCities.includes(cityName);
+  let starIcon = favOrNot ? "fas" : "far";
+
+  const favCityIcon = createElement("i", {
+    className: `${starIcon} fa-star`,
+  });
+  const favCityButton = createElement("btn", {
+    className: "favCityButton",
+    children: [favCityIcon],
+
+    onclick: (event) => {
+      event.preventDefault;
+      favOrNot = !favOrNot;
+      let starIcon = favOrNot ? "fas" : "far";
+      favCityIcon.className = `${starIcon} fa-star`;
+      if (favOrNot) {
+        favouriteCities.push(cityName);
+        createFavCities(favouriteCities);
+      } else {
+        favouriteCities = favouriteCities.filter((city) => city !== cityName);
+      }
+      createFavCities(favouriteCities);
+    },
+  });
+
   const roboFace = createElement("img", {
     className: "roboFace",
     src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=${roboKitten}`,
@@ -30,6 +64,7 @@ export default function createWeatherOutput(
     className: "card-body",
     children: [
       location,
+      favCityButton,
       createElement("h5", {
         className: "card-title",
         innerText: "Temperatur",

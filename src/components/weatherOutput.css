@@ -14,16 +14,6 @@
 }
 
 .card::before {
-  /* content: "";
-  position: absolute;
-  top: 145px;
-  left: -25px;
-  width: 60px;
-  height: 60px;
-  background: white;
-  transform: skew(47deg, 120deg) rotate(90deg);
-  border-radius: 0px;
-  border: 1px solid; */
   content: "";
   position: absolute;
   left: 0;
@@ -44,6 +34,12 @@
 .locationName {
   font-size: 1.5rem;
 }
+
+.fa-star {
+  color: gold;
+  font-size: 2rem;
+}
+
 .card-randomQuote {
   behavior: "scroll";
   direction: "left";

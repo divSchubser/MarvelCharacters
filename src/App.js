@@ -2,13 +2,21 @@ import "./app.css";
 import { createForm } from "./components/Form";
 import { createElement } from "./utils/elements";
 import { SearchWeather } from "./utils/api";
-import createWeather from "./components/WeatherOutput";
+import createWeatherOutput from "./components/WeatherOutput";
 import { GetRandomQuote } from "./utils/api";
-// import BeanEater from "./assets/beaneater.gif";
 import { showTime } from "./components/Watch";
 import { removeAllChildNodes } from "./utils/helpers";
+
 function App() {
   let loading = false;
+
+  // TODO: Maybe check local Storage for inital Load
+  let favouriteCities = [];
+
+  const favCitiesBox = createElement("div", {
+    className: "favCitiesBox",
+    innerHTML: `${favouriteCities}`,
+  });
 
   const headerTitle = createElement("h1", {
     innerText: "Robo-Weather",
@@ -24,10 +32,6 @@ function App() {
     IntervId = setInterval(showTime, 1000);
   }
 
-  // function stopClock() {
-  //   clearInterval(IntervId);
-  // }
-
   startClock();
 
   const subHeading = createElement("h6", {
@@ -36,28 +40,34 @@ function App() {
       "Maybe you'll get your weather, ...<br> ...if the robots are not killing humans.",
   });
 
+  // Predefined Fav-Buttons
   const createFavCity = (icon, city, flag) => {
     const button = createElement("button", {
       className: "favCity",
       innerText: icon + city + flag,
       onclick: async (event) => {
         event.preventDefault();
+        console.log("favCities", favouriteCities);
+
         loading = true;
         addRemoveLoading();
         const weatherObj = await SearchWeather(city);
         const randomQuote = await GetRandomQuote();
-        await createWeather(weatherObj, output, randomQuote);
+        await createWeatherOutput(
+          weatherObj,
+          output,
+          randomQuote,
+          favouriteCities
+        );
         loading = false;
         addRemoveLoading();
       },
     });
     return button;
   };
-
   const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮");
   const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸");
   const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱");
-
   const favCities = createElement("div", {
     className: "favCities",
     children: [favCityOne, favCityTwo, favCityThree],
@@ -84,7 +94,12 @@ function App() {
       const weatherObj = await SearchWeather(input.value);
       const randomQuote = await GetRandomQuote();
       input.value = "";
-      await createWeather(weatherObj, output, randomQuote);
+      await createWeatherOutput(
+        weatherObj,
+        output,
+        randomQuote,
+        favouriteCities
+      );
       loading = false;
       addRemoveLoading();
     },
@@ -102,7 +117,15 @@ function App() {
 
   const header = createElement("div", {
     className: "headerContainer",
-    children: [headerTitle, clock, subHeading, form, robosHeader, favCities],
+    children: [
+      favCitiesBox,
+      headerTitle,
+      clock,
+      subHeading,
+      form,
+      robosHeader,
+      favCities,
+    ],
   });
   const output = createElement("div", {
     className: "outputContainer",
