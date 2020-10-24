@@ -16,7 +16,8 @@
   cursor: pointer;
 }
 
-.searchButton:focus {
+.searchButton:focus,
+.kittyBox:focus {
   outline: none;
   border: 2px solid limegreen;
 }
