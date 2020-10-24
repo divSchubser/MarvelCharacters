@@ -1,8 +1,7 @@
 import "./weatherOutput.css";
 
-import { createFavCity } from "./FavButtons";
 import { createElement } from "../utils/elements";
-import { removeAllChildNodes } from "../utils/helpers";
+import { createFavCities } from "../components/FavButtons";
 
 export default function createWeatherOutput(
   weatherObj,
@@ -10,15 +9,6 @@ export default function createWeatherOutput(
   randomQuote,
   favouriteCities
 ) {
-  function createFavCities(favouriteCities) {
-    console.log("fav cities: ", favouriteCities);
-    const arrayContainer = document.querySelector(".favCitiesBox");
-    removeAllChildNodes(arrayContainer);
-    favouriteCities?.map((city) => {
-      const newButton = createFavCity("⭐️", city, "⭐️");
-      arrayContainer.append(newButton);
-    });
-  }
   createFavCities(favouriteCities);
 
   const weatherToday = weatherObj.consolidated_weather[0];
@@ -52,7 +42,7 @@ export default function createWeatherOutput(
       } else {
         favouriteCities = favouriteCities.filter((city) => city !== cityName);
       }
-
+      localStorage.setItem("favoriteCities", JSON.stringify(favouriteCities));
       createFavCities(favouriteCities);
     },
   });

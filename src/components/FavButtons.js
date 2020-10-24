@@ -1,4 +1,8 @@
 import { createElement } from "../utils/elements";
+import { removeAllChildNodes } from "../utils/helpers";
+import { SearchWeather, GetRandomQuote } from "../utils/api";
+import { addRemoveLoading } from "../utils/helpers";
+import createWeatherOutput from "../components/WeatherOutput";
 
 // Predefined Fav-Buttons
 
@@ -10,3 +14,30 @@ export const createFavCity = (icon, city, flag, event) => {
   });
   return button;
 };
+
+export function createFavCities(favouriteCities) {
+  const arrayContainer = document.querySelector(".favCitiesBox");
+  removeAllChildNodes(arrayContainer);
+  const output = document.querySelector(".outputContainer");
+  favouriteCities?.map((city) => {
+    const newButton = createFavCity("⭐️", city, "⭐️", {
+      onclick: async (event) => {
+        console.log("geklickt");
+        event.preventDefault();
+        let loading = true;
+        addRemoveLoading(loading);
+        const weatherObj = await SearchWeather(city);
+        const randomQuote = await GetRandomQuote();
+        await createWeatherOutput(
+          weatherObj,
+          output,
+          randomQuote,
+          favouriteCities
+        );
+        loading = false;
+        addRemoveLoading(loading);
+      },
+    });
+    arrayContainer.append(newButton);
+  });
+}

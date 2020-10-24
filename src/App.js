@@ -12,11 +12,12 @@ function App() {
   let loading = false;
 
   // TODO: Maybe check local Storage for inital Load
-  let favouriteCities = [];
-
+  let favouriteCities = JSON.parse(
+    localStorage.getItem("favoriteCities") || "[]"
+  );
   const favCitiesBox = createElement("div", {
     className: "favCitiesBox",
-    innerHTML: `${favouriteCities}`,
+    // innerHTML: `${favouriteCities}`,
   });
 
   const headerTitle = createElement("h1", {
@@ -34,6 +35,30 @@ function App() {
   }
 
   startClock();
+  function createInitalFavs() {
+    favouriteCities?.map((city) => {
+      const newButton = createFavCity("⭐️", city, "⭐️", {
+        onclick: async (event) => {
+          console.log("geklickt");
+          event.preventDefault();
+          let loading = true;
+          addRemoveLoading(loading);
+          const weatherObj = await SearchWeather(city);
+          const randomQuote = await GetRandomQuote();
+          await createWeatherOutput(
+            weatherObj,
+            output,
+            randomQuote,
+            favouriteCities
+          );
+          loading = false;
+          addRemoveLoading(loading);
+        },
+      });
+      favCitiesBox.append(newButton);
+    });
+  }
+  createInitalFavs();
 
   const subHeading = createElement("h6", {
     className: "header__sub",
@@ -44,61 +69,61 @@ function App() {
     className: "outputContainer",
   });
 
-  const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮", {
-    onclick: async (event) => {
-      event.preventDefault();
-      let loading = true;
-      addRemoveLoading(loading);
-      const weatherObj = await SearchWeather("Abidjan");
-      const randomQuote = await GetRandomQuote();
-      await createWeatherOutput(
-        weatherObj,
-        output,
-        randomQuote,
-        favouriteCities
-      );
-      loading = false;
-      addRemoveLoading(loading);
-    },
-  });
-  const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸", {
-    onclick: async (event) => {
-      event.preventDefault();
-      let loading = true;
-      addRemoveLoading(loading);
-      const weatherObj = await SearchWeather("Anchorage");
-      const randomQuote = await GetRandomQuote();
-      await createWeatherOutput(
-        weatherObj,
-        output,
-        randomQuote,
-        favouriteCities
-      );
-      loading = false;
-      addRemoveLoading(loading);
-    },
-  });
-  const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱", {
-    onclick: async (event) => {
-      event.preventDefault();
-      let loading = true;
-      addRemoveLoading(loading);
-      const weatherObj = await SearchWeather("The Hague");
-      const randomQuote = await GetRandomQuote();
-      await createWeatherOutput(
-        weatherObj,
-        output,
-        randomQuote,
-        favouriteCities
-      );
-      loading = false;
-      addRemoveLoading(loading);
-    },
-  });
+  // const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮", {
+  //   onclick: async (event) => {
+  //     event.preventDefault();
+  //     let loading = true;
+  //     addRemoveLoading(loading);
+  //     const weatherObj = await SearchWeather("Abidjan");
+  //     const randomQuote = await GetRandomQuote();
+  //     await createWeatherOutput(
+  //       weatherObj,
+  //       output,
+  //       randomQuote,
+  //       favouriteCities
+  //     );
+  //     loading = false;
+  //     addRemoveLoading(loading);
+  //   },
+  // });
+  // const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸", {
+  //   onclick: async (event) => {
+  //     event.preventDefault();
+  //     let loading = true;
+  //     addRemoveLoading(loading);
+  //     const weatherObj = await SearchWeather("Anchorage");
+  //     const randomQuote = await GetRandomQuote();
+  //     await createWeatherOutput(
+  //       weatherObj,
+  //       output,
+  //       randomQuote,
+  //       favouriteCities
+  //     );
+  //     loading = false;
+  //     addRemoveLoading(loading);
+  //   },
+  // });
+  // const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱", {
+  //   onclick: async (event) => {
+  //     event.preventDefault();
+  //     let loading = true;
+  //     addRemoveLoading(loading);
+  //     const weatherObj = await SearchWeather("The Hague");
+  //     const randomQuote = await GetRandomQuote();
+  //     await createWeatherOutput(
+  //       weatherObj,
+  //       output,
+  //       randomQuote,
+  //       favouriteCities
+  //     );
+  //     loading = false;
+  //     addRemoveLoading(loading);
+  //   },
+  // });
 
   const favCities = createElement("div", {
     className: "favCities",
-    children: [favCityOne, favCityTwo, favCityThree],
+    // children: [favCityOne, favCityTwo, favCityThree],
   });
 
   const robosHeader = createElement("h6", {
@@ -143,6 +168,7 @@ function App() {
     className: "container",
     children: [header, output],
   });
+
   return container;
 }
 
