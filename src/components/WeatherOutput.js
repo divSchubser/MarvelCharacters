@@ -1,5 +1,9 @@
-import { createElement } from "../utils/elements";
 import "./weatherOutput.css";
+
+import { createFavCity } from "./FavButtons";
+import { createElement } from "../utils/elements";
+import { removeAllChildNodes } from "../utils/helpers";
+import { addRemoveLoading } from "../utils/helpers";
 
 export default function createWeatherOutput(
   weatherObj,
@@ -8,8 +12,13 @@ export default function createWeatherOutput(
   favouriteCities
 ) {
   function createFavCities(favouriteCities) {
+    console.log("fav cities: ", favouriteCities);
     const arrayContainer = document.querySelector(".favCitiesBox");
-    arrayContainer.innerText = favouriteCities;
+    removeAllChildNodes(arrayContainer);
+    favouriteCities?.map((city) => {
+      const newButton = createFavCity("⭐️", city, "⭐️");
+      arrayContainer.append(newButton);
+    });
   }
   createFavCities(favouriteCities);
 
@@ -35,15 +44,16 @@ export default function createWeatherOutput(
 
     onclick: (event) => {
       event.preventDefault;
+
       favOrNot = !favOrNot;
       let starIcon = favOrNot ? "fas" : "far";
       favCityIcon.className = `${starIcon} fa-star`;
       if (favOrNot) {
         favouriteCities.push(cityName);
-        createFavCities(favouriteCities);
       } else {
         favouriteCities = favouriteCities.filter((city) => city !== cityName);
       }
+
       createFavCities(favouriteCities);
     },
   });
@@ -91,10 +101,6 @@ export default function createWeatherOutput(
   });
   outputContainer.innerHTML = "";
   outputContainer.append(roboFace, card);
-  // const outputContainer = createElement("div", {
-  //   className: "outputContainer",
-  //   children: [location, card],
-  // });
 
   return outputContainer;
 }
