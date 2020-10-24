@@ -12,12 +12,11 @@ export default function createWeatherOutput(
     console.log(weatherObj);
   }
 
-  const checkboxvalue = document.querySelector(".kittyButton").checked;
+  const checkboxvalue = document.querySelector(".kittyCheckbox").checked;
   let roboKitten = checkboxvalue ? "set4" : "set1";
   const roboFace = createElement("img", {
     className: "roboFace",
     src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=${roboKitten}`,
-
     alt: "Robo-Face",
   });
 
