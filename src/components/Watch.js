@@ -1,4 +1,4 @@
-export function showTime(clockElement) {
+export function showTime() {
   let time = new Date();
   let hour = time.getHours();
   let min = time.getMinutes();

@@ -5,7 +5,8 @@ import { SearchWeather } from "./utils/api";
 import createWeatherOutput from "./components/WeatherOutput";
 import { GetRandomQuote } from "./utils/api";
 import { showTime } from "./components/Watch";
-import { removeAllChildNodes } from "./utils/helpers";
+import { addRemoveLoading } from "./utils/helpers";
+import { createFavCity } from "./components/FavButtons";
 
 function App() {
   let loading = false;
@@ -39,35 +40,62 @@ function App() {
     innerHTML:
       "Maybe you'll get your weather, ...<br> ...if the robots are not killing humans.",
   });
+  const output = createElement("div", {
+    className: "outputContainer",
+  });
 
-  // Predefined Fav-Buttons
-  const createFavCity = (icon, city, flag) => {
-    const button = createElement("button", {
-      className: "favCity",
-      innerText: icon + city + flag,
-      onclick: async (event) => {
-        event.preventDefault();
-        console.log("favCities", favouriteCities);
+  const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮", {
+    onclick: async (event) => {
+      event.preventDefault();
+      let loading = true;
+      addRemoveLoading(loading);
+      const weatherObj = await SearchWeather("Abidjan");
+      const randomQuote = await GetRandomQuote();
+      await createWeatherOutput(
+        weatherObj,
+        output,
+        randomQuote,
+        favouriteCities
+      );
+      loading = false;
+      addRemoveLoading(loading);
+    },
+  });
+  const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸", {
+    onclick: async (event) => {
+      event.preventDefault();
+      let loading = true;
+      addRemoveLoading(loading);
+      const weatherObj = await SearchWeather("Anchorage");
+      const randomQuote = await GetRandomQuote();
+      await createWeatherOutput(
+        weatherObj,
+        output,
+        randomQuote,
+        favouriteCities
+      );
+      loading = false;
+      addRemoveLoading(loading);
+    },
+  });
+  const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱", {
+    onclick: async (event) => {
+      event.preventDefault();
+      let loading = true;
+      addRemoveLoading(loading);
+      const weatherObj = await SearchWeather("The Hague");
+      const randomQuote = await GetRandomQuote();
+      await createWeatherOutput(
+        weatherObj,
+        output,
+        randomQuote,
+        favouriteCities
+      );
+      loading = false;
+      addRemoveLoading(loading);
+    },
+  });
 
-        loading = true;
-        addRemoveLoading();
-        const weatherObj = await SearchWeather(city);
-        const randomQuote = await GetRandomQuote();
-        await createWeatherOutput(
-          weatherObj,
-          output,
-          randomQuote,
-          favouriteCities
-        );
-        loading = false;
-        addRemoveLoading();
-      },
-    });
-    return button;
-  };
-  const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮");
-  const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸");
-  const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱");
   const favCities = createElement("div", {
     className: "favCities",
     children: [favCityOne, favCityTwo, favCityThree],
@@ -78,18 +106,11 @@ function App() {
     innerText: "Robos Favourite Cities:",
   });
 
-  function addRemoveLoading() {
-    if (loading) {
-      removeAllChildNodes(output);
-      output.append(loadingImg);
-    }
-  }
-
   const form = createForm({
     onsubmit: async (event) => {
       event.preventDefault();
       loading = true;
-      addRemoveLoading();
+      addRemoveLoading(loading);
       const input = document.querySelector(".input");
       const weatherObj = await SearchWeather(input.value);
       const randomQuote = await GetRandomQuote();
@@ -101,34 +122,21 @@ function App() {
         favouriteCities
       );
       loading = false;
-      addRemoveLoading();
+      addRemoveLoading(loading);
     },
   });
-
-  const loadingImg = createElement("img", {
-    className: "loadingImg",
-    src: `https://media1.tenor.com/images/e8252f2679f8c77bcc2732fbacf0eeec/tenor.gif?itemid=5295987`,
-    alt: "Bean Eater",
-  });
-
-  // const loader = createElement("div", {
-  //   children: [loadingImg],
-  // });
 
   const header = createElement("div", {
     className: "headerContainer",
     children: [
-      favCitiesBox,
       headerTitle,
       clock,
       subHeading,
       form,
       robosHeader,
       favCities,
+      favCitiesBox,
     ],
-  });
-  const output = createElement("div", {
-    className: "outputContainer",
   });
 
   const container = createElement("div", {
