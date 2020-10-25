@@ -30,12 +30,11 @@ function App() {
   });
   let IntervId = null;
 
-  function startClock() {
+  (function startClock() {
     IntervId = setInterval(showTime, 1000);
-  }
+  })();
 
-  startClock();
-  function createInitalFavs() {
+  (function createInitalFavs() {
     favouriteCities?.map((city) => {
       const newButton = createFavCity("⭐️", city, "⭐️", {
         onclick: async (event) => {
@@ -57,8 +56,7 @@ function App() {
       });
       favCitiesBox.append(newButton);
     });
-  }
-  createInitalFavs();
+  })();
 
   const subHeading = createElement("h6", {
     className: "header__sub",
