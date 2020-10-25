@@ -30,7 +30,7 @@ function App() {
 
   startClock();
 
-  const subHeading = createElement("h6", {
+  const subHeading = createElement("p", {
     className: "header__sub",
     innerHTML:
       "Maybe you'll get your weather, ...<br> ...if the robots are not killing humans.",

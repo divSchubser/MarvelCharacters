@@ -38,32 +38,36 @@ h6 {
   color: white;
 }
 .header__sub {
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   color: limegreen;
-  width: 40%;
-  margin: 0.5em auto;
-  /* font-size: 1rem;s */
+  width: 60%;
+  margin: 1.5rem auto 0 auto;
 }
 
 /* Robos Favourite Cities */
 .robosHeader {
   margin-top: 1rem;
+  margin-bottom: 0;
   color: white;
 }
 
 .favCities {
-  width: 60%;
-  margin: 1rem auto;
   display: flex;
   justify-content: space-evenly;
+  flex-flow: wrap;
+  width: 60%;
+  margin: 1rem auto;
 }
 
 .favCity {
+  width: 150px;
   background: black;
   color: limegreen;
-  padding: 0.5rem 0.8rem;
+  padding: 0.5rem;
 }
-
+.favCities > :last-child {
+  margin-top: 0.5rem;
+}
 .favCity:hover {
   border: 2px solid limegreen;
   color: limegreen;
