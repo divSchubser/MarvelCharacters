@@ -2,13 +2,23 @@ import "./app.css";
 import { createForm } from "./components/Form";
 import { createElement } from "./utils/elements";
 import { SearchWeather } from "./utils/api";
-import createWeather from "./components/WeatherOutput";
+import createWeatherOutput from "./components/WeatherOutput";
 import { GetRandomQuote } from "./utils/api";
-// import BeanEater from "./assets/beaneater.gif";
 import { showTime } from "./components/Watch";
 import { removeAllChildNodes } from "./utils/helpers";
+import { createFavCity } from "./components/FavButtons";
+
 function App() {
   let loading = false;
+
+  // TODO: Maybe check local Storage for inital Load
+  let favouriteCities = JSON.parse(
+    localStorage.getItem("favoriteCities") || "[]"
+  );
+  const favCitiesBox = createElement("div", {
+    className: "favCitiesBox",
+    // innerHTML: `${favouriteCities}`,
+  });
 
   const headerTitle = createElement("h1", {
     innerText: "Robo-Weather",
@@ -20,47 +30,98 @@ function App() {
   });
   let IntervId = null;
 
-  function startClock() {
+  (function startClock() {
     IntervId = setInterval(showTime, 1000);
-  }
+  })();
 
-  // function stopClock() {
-  //   clearInterval(IntervId);
-  // }
-
-  startClock();
+  (function createInitalFavs() {
+    favouriteCities?.map((city) => {
+      const newButton = createFavCity("⭐️", city, "⭐️", {
+        onclick: async (event) => {
+          console.log("geklickt");
+          event.preventDefault();
+          let loading = true;
+          addRemoveLoading(loading);
+          const weatherObj = await SearchWeather(city);
+          const randomQuote = await GetRandomQuote();
+          await createWeatherOutput(
+            weatherObj,
+            output,
+            randomQuote,
+            favouriteCities
+          );
+          loading = false;
+          addRemoveLoading(loading);
+        },
+      });
+      favCitiesBox.append(newButton);
+    });
+  })();
 
   const subHeading = createElement("p", {
     className: "header__sub",
     innerHTML:
       "Maybe you'll get your weather, ...<br> ...if the robots are not killing humans.",
   });
+  const output = createElement("div", {
+    className: "outputContainer",
+  });
 
-  const createFavCity = (icon, city, flag) => {
-    const button = createElement("button", {
-      className: "favCity",
-      innerText: icon + city + flag,
-      onclick: async (event) => {
-        event.preventDefault();
-        loading = true;
-        addRemoveLoading();
-        const weatherObj = await SearchWeather(city);
-        const randomQuote = await GetRandomQuote();
-        await createWeather(weatherObj, output, randomQuote);
-        loading = false;
-        addRemoveLoading();
-      },
-    });
-    return button;
-  };
-
-  const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮");
-  const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸");
-  const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱");
+  // const favCityOne = createFavCity("🌞 ", "Abidjan", " 🇨🇮", {
+  //   onclick: async (event) => {
+  //     event.preventDefault();
+  //     let loading = true;
+  //     addRemoveLoading(loading);
+  //     const weatherObj = await SearchWeather("Abidjan");
+  //     const randomQuote = await GetRandomQuote();
+  //     await createWeatherOutput(
+  //       weatherObj,
+  //       output,
+  //       randomQuote,
+  //       favouriteCities
+  //     );
+  //     loading = false;
+  //     addRemoveLoading(loading);
+  //   },
+  // });
+  // const favCityTwo = createFavCity("🏔 ", "Anchorage", " 🇺🇸", {
+  //   onclick: async (event) => {
+  //     event.preventDefault();
+  //     let loading = true;
+  //     addRemoveLoading(loading);
+  //     const weatherObj = await SearchWeather("Anchorage");
+  //     const randomQuote = await GetRandomQuote();
+  //     await createWeatherOutput(
+  //       weatherObj,
+  //       output,
+  //       randomQuote,
+  //       favouriteCities
+  //     );
+  //     loading = false;
+  //     addRemoveLoading(loading);
+  //   },
+  // });
+  // const favCityThree = createFavCity("☔️ ", "The Hague", " 🇳🇱", {
+  //   onclick: async (event) => {
+  //     event.preventDefault();
+  //     let loading = true;
+  //     addRemoveLoading(loading);
+  //     const weatherObj = await SearchWeather("The Hague");
+  //     const randomQuote = await GetRandomQuote();
+  //     await createWeatherOutput(
+  //       weatherObj,
+  //       output,
+  //       randomQuote,
+  //       favouriteCities
+  //     );
+  //     loading = false;
+  //     addRemoveLoading(loading);
+  //   },
+  // });
 
   const favCities = createElement("div", {
     className: "favCities",
-    children: [favCityOne, favCityTwo, favCityThree],
+    // children: [favCityOne, favCityTwo, favCityThree],
   });
 
   const robosHeader = createElement("h6", {
@@ -72,14 +133,19 @@ function App() {
     onsubmit: async (event) => {
       event.preventDefault();
       loading = true;
-      addRemoveLoading();
+      addRemoveLoading(loading);
       const input = document.querySelector(".input");
       const weatherObj = await SearchWeather(input.value);
       const randomQuote = await GetRandomQuote();
       input.value = "";
-      await createWeather(weatherObj, output, randomQuote);
+      await createWeatherOutput(
+        weatherObj,
+        output,
+        randomQuote,
+        favouriteCities
+      );
       loading = false;
-      addRemoveLoading();
+      addRemoveLoading(loading);
     },
   });
   function addRemoveLoading() {
@@ -111,16 +177,22 @@ function App() {
 
   const header = createElement("div", {
     className: "headerContainer",
-    children: [headerTitle, clock, subHeading, form, robosHeader, favCities],
-  });
-  const output = createElement("div", {
-    className: "outputContainer",
+    children: [
+      headerTitle,
+      clock,
+      subHeading,
+      form,
+      robosHeader,
+      favCities,
+      favCitiesBox,
+    ],
   });
 
   const container = createElement("div", {
     className: "container",
     children: [header, output],
   });
+
   return container;
 }
 
