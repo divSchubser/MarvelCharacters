@@ -125,3 +125,8 @@ h6 {
   border-radius: 20px;
   transition: 1s ease-in-out;
 }
+
+.loadingText {
+  color: limegreen;
+  width: 80%;
+}

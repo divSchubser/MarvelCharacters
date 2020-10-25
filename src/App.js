@@ -68,13 +68,6 @@ function App() {
     innerText: "Robos Favourite Cities:",
   });
 
-  function addRemoveLoading() {
-    if (loading) {
-      removeAllChildNodes(output);
-      output.append(loadingImg);
-    }
-  }
-
   const form = createForm({
     onsubmit: async (event) => {
       event.preventDefault();
@@ -89,11 +82,27 @@ function App() {
       addRemoveLoading();
     },
   });
+  function addRemoveLoading() {
+    if (loading) {
+      removeAllChildNodes(output);
+      output.append(loadingContainer);
+    }
+  }
 
+  const loadingText = createElement("marquee", {
+    className: "loadingText",
+    innerHTML:
+      "Please wait, till a <b>Robo</b> fetches your <b>WeatherData</b>...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;",
+  });
   const loadingImg = createElement("img", {
     className: "loadingImg",
     src: `https://media1.tenor.com/images/e8252f2679f8c77bcc2732fbacf0eeec/tenor.gif?itemid=5295987`,
     alt: "Bean Eater",
+  });
+
+  const loadingContainer = createElement("div", {
+    className: "loadingContainer",
+    children: [loadingText, loadingImg],
   });
 
   // const loader = createElement("div", {
