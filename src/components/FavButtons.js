@@ -20,7 +20,7 @@ export function createFavCities(favouriteCities) {
   removeAllChildNodes(arrayContainer);
   const output = document.querySelector(".outputContainer");
   favouriteCities?.map((city) => {
-    const newButton = createFavCity("⭐️new ", city, "", {
+    const newButton = createFavCity("⭐️ ", city, "", {
       onclick: async (event) => {
         event.preventDefault();
         addRemoveLoading(true);

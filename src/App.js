@@ -36,7 +36,7 @@ function App() {
 
   (function createInitalFavs() {
     favouriteCities?.map((city) => {
-      const newButton = createFavCity("⭐️!! ", city, "", {
+      const newButton = createFavCity("⭐️ ", city, "", {
         onclick: async (event) => {
           event.preventDefault();
           loading = true;

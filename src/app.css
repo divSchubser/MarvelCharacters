@@ -16,6 +16,10 @@ body {
   background: rgb(75, 74, 74);
 }
 
+button {
+  font-family: "Turret Road", cursive;
+  font-weight: 700;
+}
 h1,
 h2,
 h3,
@@ -61,10 +65,10 @@ h6 {
 }
 
 .favCity {
-  width: 150px;
-  background: black;
-  color: limegreen;
-  padding: 0.5rem;
+  background: gold;
+  height: 30px;
+  color: black;
+  padding: auto 0.5rem;
 }
 .favCities > :last-child {
   margin-top: 0.5rem;
@@ -122,6 +126,7 @@ h6 {
   background-color: black;
   color: limegreen;
   border: 2px solid limegreen;
+  line-height: 23px;
 }
 
 .loadingContainer {
