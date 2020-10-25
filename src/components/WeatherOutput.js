@@ -9,31 +9,30 @@ export default function createWeatherOutput(
   randomQuote,
   favouriteCities
 ) {
-  createFavCities(favouriteCities);
-
-  const weatherToday = weatherObj.consolidated_weather[0];
-  if (weatherToday === undefined) {
-    console.log(weatherObj);
-  }
-
-  let cityName = weatherObj.title;
+  const cityName = weatherObj.title;
   const checkboxValue = document.querySelector(".kittyCheckbox").checked;
+  const weatherToday = weatherObj.consolidated_weather[0];
   let roboKitten = checkboxValue ? "set4" : "set1";
-
   // Fav Cities
   let favOrNot = favouriteCities.includes(cityName);
   let starIcon = favOrNot ? "fas" : "far";
 
+  const roboFace = createElement("img", {
+    className: "roboFace",
+    src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=${roboKitten}`,
+    alt: "Robo-Face",
+  });
+
   const favCityIcon = createElement("i", {
     className: `${starIcon} fa-star`,
   });
+
   const favCityButton = createElement("btn", {
     className: "favCityButton",
     children: [favCityIcon],
 
     onclick: (event) => {
       event.preventDefault;
-
       favOrNot = !favOrNot;
       let starIcon = favOrNot ? "fas" : "far";
       favCityIcon.className = `${starIcon} fa-star`;
@@ -47,22 +46,19 @@ export default function createWeatherOutput(
     },
   });
 
-  const roboFace = createElement("img", {
-    className: "roboFace",
-    src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=${roboKitten}`,
-    alt: "Robo-Face",
-  });
-
   const location = createElement("h2", {
     className: "locationName",
     innerText: weatherObj.title,
   });
 
+  const cardHeader = createElement("div", {
+    className: "card-header",
+    children: [location, favCityButton],
+  });
   const cardBody = createElement("div", {
     className: "card-body",
     children: [
-      location,
-      favCityButton,
+      cardHeader,
       createElement("h5", {
         className: "card-title",
         innerText: "Temperatur",

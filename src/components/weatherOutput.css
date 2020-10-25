@@ -1,12 +1,13 @@
 .card-image {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
 }
 
 .card {
   width: 300px;
   position: relative;
-  border-radius: 15%;
+  border-radius: 10px;
+  padding: 0 0.5rem;
   margin-left: 20px;
   background: black;
   color: limegreen;
@@ -28,15 +29,10 @@
 }
 @media only screen and (max-width: 600px) {
   .card::before {
-    content: "";
-    position: absolute;
     top: 106%;
     left: 50%;
-    width: 0;
-    height: 0;
     border: 2.656em solid transparent;
     border-top-color: black;
-    border-bottom: 0;
     margin-left: -1.656em;
     margin-bottom: -1.656em;
   }
@@ -48,8 +44,11 @@
 .card-text {
   font-size: 2rem;
 }
-.locationName {
-  font-size: 1.5rem;
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .fa-star {
@@ -58,7 +57,6 @@
 }
 
 .card-randomQuote {
-  width: 80%;
   display: block;
   margin: 0.5rem auto;
 }
