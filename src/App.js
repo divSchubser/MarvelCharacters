@@ -5,7 +5,7 @@ import { SearchWeather } from "./utils/api";
 import createWeatherOutput from "./components/WeatherOutput";
 import { GetRandomQuote } from "./utils/api";
 import { showTime } from "./components/Watch";
-import { removeAllChildNodes } from "./utils/helpers";
+import { addRemoveLoading } from "./utils/helpers";
 import { createFavCity } from "./components/FavButtons";
 
 function App() {
@@ -36,11 +36,10 @@ function App() {
 
   (function createInitalFavs() {
     favouriteCities?.map((city) => {
-      const newButton = createFavCity("⭐️", city, "⭐️", {
+      const newButton = createFavCity("⭐️!! ", city, "", {
         onclick: async (event) => {
-          console.log("geklickt");
           event.preventDefault();
-          let loading = true;
+          loading = true;
           addRemoveLoading(loading);
           const weatherObj = await SearchWeather(city);
           const randomQuote = await GetRandomQuote();
@@ -119,10 +118,10 @@ function App() {
   //   },
   // });
 
-  const favCities = createElement("div", {
-    className: "favCities",
-    // children: [favCityOne, favCityTwo, favCityThree],
-  });
+  // const favCities = createElement("div", {
+  //   className: "favCities",
+  //   children: [favCityOne, favCityTwo, favCityThree],
+  // });
 
   const robosHeader = createElement("h6", {
     className: "robosHeader",
@@ -148,44 +147,10 @@ function App() {
       addRemoveLoading(loading);
     },
   });
-  function addRemoveLoading() {
-    if (loading) {
-      removeAllChildNodes(output);
-      output.append(loadingContainer);
-    }
-  }
-
-  const loadingText = createElement("marquee", {
-    className: "loadingText",
-    innerHTML:
-      "Please wait, till a <b>Robo</b> fetches your <b>WeatherData</b>...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;",
-  });
-  const loadingImg = createElement("img", {
-    className: "loadingImg",
-    src: `https://media1.tenor.com/images/e8252f2679f8c77bcc2732fbacf0eeec/tenor.gif?itemid=5295987`,
-    alt: "Bean Eater",
-  });
-
-  const loadingContainer = createElement("div", {
-    className: "loadingContainer",
-    children: [loadingText, loadingImg],
-  });
-
-  // const loader = createElement("div", {
-  //   children: [loadingImg],
-  // });
 
   const header = createElement("div", {
     className: "headerContainer",
-    children: [
-      headerTitle,
-      clock,
-      subHeading,
-      form,
-      robosHeader,
-      favCities,
-      favCitiesBox,
-    ],
+    children: [headerTitle, clock, subHeading, form, robosHeader, favCitiesBox],
   });
 
   const container = createElement("div", {

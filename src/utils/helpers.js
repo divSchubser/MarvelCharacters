@@ -13,10 +13,22 @@ const loadingImg = createElement("img", {
   alt: "Bean Eater",
 });
 
+const loadingText = createElement("marquee", {
+  className: "loadingText",
+  innerHTML:
+    "Please wait, till a <b>Robo</b> fetches your <b>WeatherData</b>...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;",
+});
+
+const loadingContainer = createElement("div", {
+  className: "loadingContainer",
+});
+
 export function addRemoveLoading(loading) {
   let output = document.querySelector(".outputContainer");
+
   if (loading) {
+    loadingContainer.append(loadingText, loadingImg);
     removeAllChildNodes(output);
-    output.append(loadingImg);
+    output.append(loadingContainer);
   }
 }

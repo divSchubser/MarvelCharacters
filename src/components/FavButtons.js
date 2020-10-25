@@ -20,12 +20,10 @@ export function createFavCities(favouriteCities) {
   removeAllChildNodes(arrayContainer);
   const output = document.querySelector(".outputContainer");
   favouriteCities?.map((city) => {
-    const newButton = createFavCity("⭐️", city, "⭐️", {
+    const newButton = createFavCity("⭐️new ", city, "", {
       onclick: async (event) => {
-        console.log("geklickt");
         event.preventDefault();
-        let loading = true;
-        addRemoveLoading(loading);
+        addRemoveLoading(true);
         const weatherObj = await SearchWeather(city);
         const randomQuote = await GetRandomQuote();
         await createWeatherOutput(
@@ -34,8 +32,7 @@ export function createFavCities(favouriteCities) {
           randomQuote,
           favouriteCities
         );
-        loading = false;
-        addRemoveLoading(loading);
+        addRemoveLoading(false);
       },
     });
     arrayContainer.append(newButton);
