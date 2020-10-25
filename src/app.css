@@ -86,7 +86,28 @@ h6 {
 .outputContainer {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   margin-top: 3rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .outputContainer {
+    flex-flow: column-reverse;
+    align-items: center;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 1.656em solid transparent;
+    border-top-color: black;
+    border-bottom: 0;
+    margin-left: -1.656em;
+    margin-bottom: -1.656em;
+  }
 }
 
 .clock {
