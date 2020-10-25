@@ -2,19 +2,20 @@ import "./form.css";
 import { createElement } from "../utils/elements";
 
 export const createForm = (props) => {
-  // const kittyLabel = createElement("label", {
-  //   className: "kittyLabel",
-  //   name: "kitty",
-  //   innertText: "Kitty",
-  // });
+  const kittyLabel = createElement("label", {
+    className: "kittyLabel",
+  });
+
+  kittyLabel.setAttribute("for", "kittyCheck");
 
   const kittyCheckbox = createElement("input", {
-    className: "kittyButton",
+    className: "kittyCheckbox",
+    id: "kittyCheck",
     type: "checkbox",
   });
-  const kittyBox = createElement("button", {
+  const kittyBox = createElement("div", {
     className: "kittyBox",
-    children: [kittyCheckbox],
+    children: [kittyCheckbox, kittyLabel],
   });
   const searchButton = createElement("button", {
     type: "submit",
