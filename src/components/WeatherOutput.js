@@ -10,16 +10,19 @@ export default function createWeatherOutput(
   favouriteCities
 ) {
   const cityName = weatherObj.title;
-  const checkboxValue = document.querySelector(".kittyCheckbox").checked;
+  const showKitties = document.querySelector(".kittyCheckbox").checked;
+  const showHumans = document.querySelector(".humanCheckbox").checked;
   const weatherToday = weatherObj.consolidated_weather[0];
-  let roboKitten = checkboxValue ? "set4" : "set1";
+  let avatarSet = () => (showHumans ? "set5" : showKitties ? "set4" : "set1");
   // Fav Cities
   let favOrNot = favouriteCities.includes(cityName);
   let starIcon = favOrNot ? "fas" : "far";
 
-  const roboFace = createElement("img", {
+  const avatar = createElement("img", {
     className: "roboFace",
-    src: `https://robohash.org/${weatherToday.weather_state_abbr}.png?set=${roboKitten}`,
+    src: `https://robohash.org/${
+      weatherToday.weather_state_abbr
+    }.png?set=${avatarSet()}`,
     alt: "Robo-Face",
   });
 
@@ -34,7 +37,10 @@ export default function createWeatherOutput(
     onclick: (event) => {
       event.preventDefault;
       favOrNot = !favOrNot;
+      console.log("itsme");
       let starIcon = favOrNot ? "fas" : "far";
+      let favCitiesBox = document.querySelector(".favCitiesBox");
+
       favCityIcon.className = `${starIcon} fa-star`;
       if (favOrNot) {
         favouriteCities.push(cityName);
@@ -84,7 +90,7 @@ export default function createWeatherOutput(
     children: [cardBody],
   });
   outputContainer.innerHTML = "";
-  outputContainer.append(roboFace, card);
+  outputContainer.append(avatar, card);
 
   return outputContainer;
 }

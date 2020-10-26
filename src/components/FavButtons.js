@@ -3,6 +3,7 @@ import { removeAllChildNodes } from "../utils/helpers";
 import { SearchWeather, GetRandomQuote } from "../utils/api";
 import { addRemoveLoading } from "../utils/helpers";
 import createWeatherOutput from "../components/WeatherOutput";
+import { generateYourFavs } from "./YourFavs";
 
 // Predefined Fav-Buttons
 
@@ -18,6 +19,7 @@ export const createFavCity = (icon, city, flag, event) => {
 export function createFavCities(favouriteCities) {
   const arrayContainer = document.querySelector(".favCitiesBox");
   removeAllChildNodes(arrayContainer);
+  generateYourFavs(favouriteCities, arrayContainer);
   const output = document.querySelector(".outputContainer");
   favouriteCities?.map((city) => {
     const newButton = createFavCity("⭐️ ", city, "", {

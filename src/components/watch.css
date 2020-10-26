@@ -1,0 +1,16 @@
+.clock {
+  min-width: 120px;
+  min-height: 26.8px;
+  margin: auto;
+  padding: 0 0.5rem;
+  background-color: black;
+  color: limegreen;
+  border: 2px solid limegreen;
+  line-height: 23px;
+  transition: all 50ms;
+  display: inline-block;
+}
+
+.clock:active {
+  box-shadow: 0px 0px 8px 1px beige;
+}

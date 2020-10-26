@@ -4,12 +4,12 @@
 }
 
 .card {
-  width: 300px;
+  width: clamp(200px, 50vw, 300px);
   position: relative;
   border-radius: 10px;
   padding: 0 0.5rem;
   margin-left: 20px;
-  background: black;
+  background: rgba(11, 23, 11, 1);
   color: limegreen;
 }
 
@@ -21,7 +21,7 @@
   width: 0;
   height: 0;
   border: 3.125em solid transparent;
-  border-right-color: black;
+  border-right-color: rgba(11, 23, 11, 1);
   border-left: 0;
   border-bottom: 0;
   margin-top: -1.562em;
@@ -32,7 +32,7 @@
     top: 106%;
     left: 50%;
     border: 2.656em solid transparent;
-    border-top-color: black;
+    border-top-color: rgba(11, 23, 11, 1);
     margin-left: -1.656em;
     margin-bottom: -1.656em;
   }
@@ -43,12 +43,18 @@
 
 .card-text {
   font-size: 2rem;
+  margin: 0;
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.locationName {
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
+  padding: 0.5rem auto;
 }
 
 .fa-star {
@@ -66,4 +72,5 @@
   max-height: 230px;
   width: auto;
   height: auto;
+  border-radius: 50%;
 }
