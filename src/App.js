@@ -1,5 +1,5 @@
 import "./app.css";
-import "./components/tuesday/tuesday.min.css";
+import "./components/tuesday.min.css";
 
 import { createForm } from "./components/Form";
 import { createElement } from "./utils/elements";
