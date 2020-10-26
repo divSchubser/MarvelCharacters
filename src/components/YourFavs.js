@@ -1,6 +1,6 @@
 import { generateRandomSeed, removeAllChildNodes } from "../utils/helpers";
 
-const { createElement } = require("../utils/elements");
+import { createElement } from "../utils/elements";
 
 export const generateYourFavs = (favouriteCities, favCitiesBox) => {
   if (favouriteCities.length > 0) {
