@@ -10,12 +10,12 @@ export async function showTime(clockContainer, ampm) {
   let sec = time.getSeconds();
   let am_pm = "";
 
+  if (ampm && hour <= 12) {
+    am_pm = " AM";
+  }
   if (ampm && hour > 12) {
     hour -= 12;
     am_pm = " PM";
-  }
-  if (ampm && hour <= 12) {
-    am_pm = " AM";
   }
   hour = hour < 10 ? "0" + hour : hour;
   min = min < 10 ? "0" + min : min;
