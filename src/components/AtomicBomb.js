@@ -1,5 +1,5 @@
 import "./atomicBomb.css";
-const { createElement } = require("../utils/elements");
+import { createElement } from "../utils/elements";
 import bombElement from "../assets/bomb.gif";
 
 const bombImg = createElement("img", { className: "BOOOMB", src: bombElement });

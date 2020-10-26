@@ -1,7 +1,6 @@
 import { createElement } from "../utils/elements";
 import "./watch.css";
 
-let IntervId = null;
 let ampm = JSON.parse(localStorage.getItem("ampm") || false);
 
 export async function showTime(clockContainer, ampm) {
@@ -11,12 +10,12 @@ export async function showTime(clockContainer, ampm) {
   let sec = time.getSeconds();
   let am_pm = "";
 
+  if (ampm && hour <= 12) {
+    am_pm = " AM";
+  }
   if (ampm && hour > 12) {
     hour -= 12;
     am_pm = " PM";
-  }
-  if (ampm && hour <= 12) {
-    am_pm = " AM";
   }
   hour = hour < 10 ? "0" + hour : hour;
   min = min < 10 ? "0" + min : min;
@@ -42,4 +41,4 @@ const clock = createElement("div", {
   },
 });
 
-(() => (IntervId = setInterval(() => showTime(clock, ampm), 1000)))();
+(() => setInterval(() => showTime(clock, ampm), 1000))();
