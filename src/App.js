@@ -80,7 +80,7 @@ function App() {
     className: "errorText",
     innerText: "🚀🚀🚀 you already killed all robos! 🦿🦾",
   });
-  function destroyRobot(count = 1) {
+  function destroyRobot() {
     if (dancingRobos.lastChild?.className === "dancingRobo") {
       dancingRobos.removeChild(dancingRobos.lastChild);
     } else {
